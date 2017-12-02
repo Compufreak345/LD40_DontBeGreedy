@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Scripts/Monster1.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Monster1.png" type="Texture" id=2]
@@ -7,6 +7,11 @@
 
 custom_solver_bias = 0.0
 extents = Vector2( 4, 8 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4.1, 8.1 )
 
 [node name="Monster1" type="RigidBody2D"]
 
@@ -21,13 +26,13 @@ mode = 0
 mass = 1.0
 friction = 1.0
 bounce = 0.0
-gravity_scale = 1.0
+gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 5
+contact_monitor = true
 sleeping = false
-can_sleep = true
+can_sleep = false
 velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = -1.0
@@ -39,6 +44,7 @@ __meta__ = {
 movingSpeed = 100
 acceleration = 20
 canPassWalls = false
+damage = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -50,5 +56,28 @@ visibility/visible = false
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+
+shape = SubResource( 2 )
+trigger = true
+_update_shape_index = 0
+
+[connection signal="body_enter" from="." to="." method="_on_Monster1_body_enter"]
+
+[connection signal="body_enter" from="Hitbox" to="." method="_on_Hitbox_body_enter"]
+
+[connection signal="body_exit" from="Hitbox" to="." method="_on_Hitbox_body_exit"]
 
 

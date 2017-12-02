@@ -1,12 +1,10 @@
 extends KinematicBody2D
 export var weight = 300
-export var currentSpeed = 50
 export var maxSpeed = 200
-export var minSpeed = 10
 export var velocityStep = 50
 export var jumpStrength = 100
 export var climbSpeed = 20
-export var health = 10
+export var health = 10 setget set_health, get_health
 var climbing = false
 var velocity = Vector2()
 var world
@@ -15,21 +13,36 @@ export var floorAngleTolerance = 40
 var canClimb = false
 var laddersTouched = Dictionary()
 var canMoveThroughWalls = true
-var isMovingThroughWall = false
 
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	world = get_node("/root/World")
 	set_fixed_process(true)
+	set_health(health)
 
-func decrease_health(value):
-	health -= value
-func enterLadder(ladder):
+func set_health(value):
+	health = value
+	if world != null:
+		world.update_health(health)
+	
+func get_health():
+	return health
+
+func hit(strength):
+	set_health(get_health() - strength)
+	if get_health() <= 0:
+		die()
+
+func die():
+	print("I am dead.")
+	#TODO: Die
+
+func enter_ladder(ladder):
 	canClimb = true
 	laddersTouched[ladder.get_instance_ID()] = ladder
 	
-func leaveLadder(ladder):
+func leave_ladder(ladder):
 	laddersTouched.erase(ladder.get_instance_ID())
 	if laddersTouched.size() == 0:
 		canClimb = false

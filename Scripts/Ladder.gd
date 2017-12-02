@@ -10,12 +10,12 @@ func _ready():
 	pass
 
 func _on_Ladder_body_enter( body ):
-	if body.has_method("enterLadder"):
-		body.enterLadder(self)
+	if body.has_method("enter_ladder"):
+		body.enter_ladder(self)
 	pass # replace with function body
 
 
 func _on_Ladder_body_exit( body ):
-	if body.has_method("leaveLadder"):
-		body.leaveLadder(self)
+	if body.has_method("leave_ladder"):
+		body.leave_ladder(self)
 	pass # replace with function body

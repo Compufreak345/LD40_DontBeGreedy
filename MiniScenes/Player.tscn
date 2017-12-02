@@ -8,7 +8,9 @@
 custom_solver_bias = 0.0
 extents = Vector2( 4, 8 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
 
 transform/pos = Vector2( 45.4306, 223.633 )
 input/pickable = false
@@ -23,12 +25,11 @@ __meta__ = {
 "_edit_group_": true
 }
 weight = 300
-currentSpeed = 50
 maxSpeed = 200
-minSpeed = 10
 velocityStep = 50
 jumpStrength = 100
 climbSpeed = 20
+health = 10
 floorAngleTolerance = 40
 
 [node name="Sprite" type="Sprite" parent="."]

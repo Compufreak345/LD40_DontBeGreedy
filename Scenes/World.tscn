@@ -169,6 +169,7 @@ health = 10
 
 transform/pos = Vector2( 352, 496 )
 z/z = 5
+damage = 1
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -294,6 +295,21 @@ transform/pos = Vector2( 288, 288 )
 [node name="Ladder3" parent="Ladders" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 288, 368 )
+
+[node name="HealthLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 50.0
+margin/bottom = 14.0
+text = "Health: "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="body_enter" from="Walls/Left Wall/Area2D" to="Walls/Left Wall" method="_on_Area2D_body_enter"]
 

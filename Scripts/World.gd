@@ -9,3 +9,6 @@ func _ready():
 	# Initialization here
 	rightEnd = Globals.get("display/width")
 	pass
+	
+func update_health(value):
+	get_node("HealthLabel").set_text("Health:" + str(value))
