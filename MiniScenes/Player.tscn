@@ -26,11 +26,11 @@ __meta__ = {
 }
 weight = 300
 maxSpeed = 200
-velocityStep = 50
-jumpStrength = 100
+acceleration = 50
+jumpStrength = 70
 climbSpeed = 20
+canMoveThroughWalls = true
 health = 10
-floorAngleTolerance = 40
 
 [node name="Sprite" type="Sprite" parent="."]
 

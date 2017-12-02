@@ -13,7 +13,7 @@ extents = Vector2( 4, 8 )
 custom_solver_bias = 0.0
 extents = Vector2( 4.1, 8.1 )
 
-[node name="Monster1" type="RigidBody2D"]
+[node name="Monster1" type="KinematicBody2D"]
 
 transform/pos = Vector2( 320, 496 )
 input/pickable = false
@@ -22,29 +22,20 @@ shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
-mode = 0
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 0.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 5
-contact_monitor = true
-sleeping = false
-can_sleep = false
-velocity/linear = Vector2( 0, 0 )
-velocity/angular = 0.0
-damp_override/linear = -1.0
-damp_override/angular = -1.0
+collision/margin = 0.08
 script/script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-movingSpeed = 100
-acceleration = 20
-canPassWalls = false
+weight = 350
+maxSpeed = 70
+acceleration = 50
+jumpStrength = 70
+climbSpeed = 20
+canMoveThroughWalls = true
+health = 10
 damage = 1
+movingDirection = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -74,10 +65,6 @@ shape = SubResource( 2 )
 trigger = true
 _update_shape_index = 0
 
-[connection signal="body_enter" from="." to="." method="_on_Monster1_body_enter"]
-
 [connection signal="body_enter" from="Hitbox" to="." method="_on_Hitbox_body_enter"]
-
-[connection signal="body_exit" from="Hitbox" to="." method="_on_Hitbox_body_exit"]
 
 

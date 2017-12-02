@@ -160,8 +160,6 @@ transform/pos = Vector2( 96, 528 )
 
 transform/pos = Vector2( 48, 496 )
 z/z = 5
-jumpStrength = 70
-health = 10
 
 [node name="Monsters" type="Node2D" parent="."]
 
@@ -169,7 +167,6 @@ health = 10
 
 transform/pos = Vector2( 352, 496 )
 z/z = 5
-damage = 1
 
 [node name="Walls" type="Node2D" parent="."]
 
