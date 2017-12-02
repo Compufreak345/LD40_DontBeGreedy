@@ -7,6 +7,8 @@ export var damage = 1
 var timePassed = 0
 var timeBetweenHits = 0.5
 var hittingElements = Dictionary()
+var RIGHTANGLETOLERANCE = 100
+var LEFTANGLETOLERANCE = 80
 export var movingDirection = 1
 func _ready():
 	._ready()
@@ -23,13 +25,9 @@ func moveMyMonster(delta):
 	
 	if movingDirection > 0:
 		moveRight()
-	#for body in get_colliding_bodies():
-	#	var dif = body.get_pos() - get_pos()
-	#	var n = dif.normalized()
-	#	print(n)
-	#	if rad2deg(acos(n.dot(Vector2(0, -1)))) > floorAngleTolerance:
-	#		# we are hitting a wall
-	#		print("hit a wall")
+	elif movingDirection <0 :
+		moveLeft()
+	
 	pass
 		
 func do_damage(delta):
@@ -42,6 +40,14 @@ func _on_Hitbox_body_enter( body ):
 	if body.is_in_group("Player"):
 			var element = HittingElement.new(body, 0)
 			hittingElements[body.get_instance_ID()] = element
+	elif !canMoveThroughWalls: # Check if we hit a wall and turn around
+		var n = body.get_pos().normalized() - get_pos().normalized()
+		var angle = rad2deg(acos(n.dot(Vector2(0, -1))))
+		print(body.get_name() + str(n) + " : " + str(angle))
+		if angle > RIGHTANGLETOLERANCE || angle < LEFTANGLETOLERANCE:
+			# we are hitting a wall
+			print("hit a wall")
+			movingDirection = -1 * movingDirection
 
 
 

@@ -63,6 +63,7 @@ func _moveCharacter(delta):
 		var n = get_collision_normal()
 		motion = n.slide(motion)
 		velocity = n.slide(velocity)
+		#print(rad2deg(acos(n.dot(Vector2(0, -1)))))
 		isOnFloor = rad2deg(acos(n.dot(Vector2(0, -1)))) < FLOORANGLETOLERANCE
 		if _jumping && isOnFloor:
 			# character is standing on the ground and wants to jump
