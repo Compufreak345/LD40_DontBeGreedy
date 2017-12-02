@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://MiniScenes/Monster1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/ClimbingMonster.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Monster3.png" type="Texture" id=3]
+
+[node name="ClimbingMonster" instance=ExtResource( 1 )]
+
+script/script = ExtResource( 2 )
+weight = 350
+maxSpeed = 200
+acceleration = 50
+jumpStrength = 70
+canMoveThroughWalls = true
+health = 10
+canAutoJump = false
+
+[node name="CollisionShape2D" parent="."]
+
+visibility/visible = true
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+

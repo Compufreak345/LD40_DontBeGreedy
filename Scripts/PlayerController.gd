@@ -4,7 +4,6 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	._ready()
-	player = self
 
 func _fixed_process(delta):
 	_movePlayer(delta, gravity)

@@ -1,24 +1,26 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://MiniScenes/GrassPlatform1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://MiniScenes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://MiniScenes/Monster1.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/LeftWall.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/RightWall.gd" type="Script" id=6]
-[ext_resource path="res://MiniScenes/Ladder.tscn" type="PackedScene" id=7]
+[ext_resource path="res://MiniScenes/JumpingMonster.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MiniScenes/ClimbingMonster.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/LeftWall.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/RightWall.gd" type="Script" id=7]
+[ext_resource path="res://MiniScenes/Ladder.tscn" type="PackedScene" id=8]
+[ext_resource path="res://MiniScenes/Gap.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 15, 272 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 15, 272 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 512, 16 )
@@ -29,8 +31,6 @@ script/script = ExtResource( 1 )
 gravity = 2
 
 [node name="Platforms" type="Node2D" parent="."]
-
-editor/display_folded = true
 
 [node name="GrassPlatform1" parent="Platforms" instance=ExtResource( 2 )]
 
@@ -112,6 +112,10 @@ transform/pos = Vector2( 304, 416 )
 
 transform/pos = Vector2( 240, 272 )
 
+[node name="GrassPlatform32" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 176, 272 )
+
 [node name="GrassPlatform28" parent="Platforms" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 240, 416 )
@@ -163,12 +167,17 @@ z/z = 5
 
 [node name="Monsters" type="Node2D" parent="."]
 
-[node name="Monster1" parent="Monsters" instance=ExtResource( 4 )]
+[node name="JumpingMonster" parent="Monsters" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 352, 496 )
-z/z = 5
+transform/pos = Vector2( 96, 384 )
+
+[node name="ClimbingMonster" parent="Monsters" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 128, 496 )
 
 [node name="Walls" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="Left Wall" type="StaticBody2D" parent="Walls"]
 
@@ -183,7 +192,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-script/script = ExtResource( 5 )
+script/script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left Wall"]
 
@@ -195,7 +204,7 @@ _update_shape_index = 0
 [node name="Area2D" type="Area2D" parent="Walls/Left Wall"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 16, 240 )
 shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
@@ -206,7 +215,7 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left Wall/Area2D"]
 
 transform/pos = Vector2( 16, 240 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 trigger = true
 _update_shape_index = 0
 
@@ -223,7 +232,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-script/script = ExtResource( 6 )
+script/script = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right Wall"]
 
@@ -235,7 +244,7 @@ _update_shape_index = 0
 [node name="Area2D" type="Area2D" parent="Walls/Right Wall"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 1008, 240 )
 shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
@@ -246,7 +255,7 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right Wall/Area2D"]
 
 transform/pos = Vector2( 1008, 240 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 trigger = true
 _update_shape_index = 0
 
@@ -254,7 +263,7 @@ _update_shape_index = 0
 
 transform/pos = Vector2( -32, 32 )
 input/pickable = false
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 512, -48 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -267,29 +276,31 @@ bounce = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top Wall"]
 
 transform/pos = Vector2( 512, -48 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
 [node name="Ladders" type="Node2D" parent="."]
 
-[node name="Ladder" parent="Ladders" instance=ExtResource( 7 )]
+editor/display_folded = true
+
+[node name="Ladder" parent="Ladders" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 192, 480 )
 
-[node name="Ladder1" parent="Ladders" instance=ExtResource( 7 )]
+[node name="Ladder1" parent="Ladders" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 192, 432 )
 
-[node name="Ladder2" parent="Ladders" instance=ExtResource( 7 )]
+[node name="Ladder2" parent="Ladders" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 288, 304 )
 
-[node name="Ladder4" parent="Ladders" instance=ExtResource( 7 )]
+[node name="Ladder4" parent="Ladders" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 288, 288 )
 
-[node name="Ladder3" parent="Ladders" instance=ExtResource( 7 )]
+[node name="Ladder3" parent="Ladders" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 288, 368 )
 
@@ -307,6 +318,12 @@ text = "Health: "
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Gap" parent="." instance=ExtResource( 9 )]
+
+[node name="Gap1" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 192, 416 )
 
 [connection signal="body_enter" from="Walls/Left Wall/Area2D" to="Walls/Left Wall" method="_on_Area2D_body_enter"]
 

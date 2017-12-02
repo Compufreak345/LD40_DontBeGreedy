@@ -1,4 +1,4 @@
-extends "res://Scripts/MonsterController.gd"
+extends "res://Scripts/Monster1.gd"
 
 # class member variables go here, for example:
 # var a = 2
@@ -9,8 +9,3 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	pass
-
-func _fixed_process(delta):
-	._fixed_process(delta)
-	
-

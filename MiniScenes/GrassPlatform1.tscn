@@ -7,7 +7,9 @@
 custom_solver_bias = 0.0
 extents = Vector2( 27.4363, 15.6897 )
 
-[node name="GrassPlatform1" type="StaticBody2D"]
+[node name="GrassPlatform1" type="StaticBody2D" groups=[
+"Ground",
+]]
 
 transform/pos = Vector2( 32, 576 )
 input/pickable = false
