@@ -20,8 +20,8 @@ var canClimb = false
 var isOnFloor = false
 var gravity = 200
 var wasClimbing = false
-var direction = 1 setget set_direction # 1 = right 0 = standing -1 = left
-export var slowSpeed = 10
+var direction = 1 setget set_direction, get_direction # 1 = right 0 = standing -1 = left
+export var slowSpeed = 80
 var fallingTime = 0
 var timeSinceLastDrop = 0
 var timeSinceLastClimb = 0
@@ -32,7 +32,7 @@ export var jumpSpeedBoost = 100
 var stoppedJumping = false
 export var attackTarget = "Player"
 var hittingElements = Dictionary()
-export var damage = 1
+export var damage = 1.0
 export var timeBetweenHits = 0.5
 var damageLabel
 
@@ -65,33 +65,27 @@ func _fixed_process(delta):
 	else:
 		timeSinceLastClimb = 0
 
-func set_direction(value):
+func get_direction():
+	return direction
+func set_direction(value, force = false):
 	var prevDirection = direction
 	
-	if prevDirection != value && value != 0:
+	if prevDirection != value && value != 0 || force:
+		print(get_name() + ": Direction changed from " + str(prevDirection) + " to " + str(value))
 		direction = value
 		var scale = get_scale()
 		if direction == -1:
 			set_scale(Vector2(-1 * scale.x, scale.y))
 		elif direction == 1:
 			set_scale(Vector2(scale.x, scale.y))
-		#if direction > 0 && sprite!=null:
-			#rotate(self,0)
 			
-		#elif direction < 0  && sprite!=null:
-			#rotate(self,180)
-			
-func rotate(node, deg):
-	if node.is_in_group("RotatingObject"):
-		node.set_rotd(deg)
-	for child in node.get_children():
-		rotate(child, deg)
 func climb(doIt):
 	if !doIt:
 		_climbing = false
 		return
 	if canClimb:
 		_climbing = true
+
 func jump(doIt):
 	if !doIt:
 		_jumping = false
@@ -180,14 +174,14 @@ func _moveLeft(maxSpeed, acceleration):
 	if isJumping:
 		maxSpeed += jumpSpeedBoost
 		acceleration += jumpSpeedBoost
-	var newX = max(velocity.x-acceleration, -1*maxSpeed)
+	var newX = max(velocity.x - acceleration, (-1 * float(maxSpeed) / weight) * 100)
 	velocity.x = newX
 	
 func _moveRight(maxSpeed, acceleration):
 	if isJumping:
 		maxSpeed += jumpSpeedBoost
 		acceleration += jumpSpeedBoost
-	var newX = min(velocity.x+acceleration, maxSpeed)
+	var newX = min(velocity.x + acceleration, (float(maxSpeed)  / weight) * 100)
 	velocity.x = newX
 
 func _stop(stopSpeed, targetSpeed):

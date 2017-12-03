@@ -4,13 +4,12 @@ extends KinematicBody2D
 # var a = 2
 # var b = "textvar"
 var minRot = -90
-var rotSpeed = 500
+var rotSpeed = 1000
 var maxRot = 0
 var rotDirection = -1
 var game
-var player
-var weight = 15
-export var damage = 2
+export var weight = 20
+export var damage = 0.5
 export var timeBetweenHits = 0.1
 func _ready():
 	game = get_node("/root/GameData")
@@ -31,14 +30,14 @@ func _fixed_process(delta):
 
 
 func _on_Hitbox_body_enter( body ):
-	player = game.get_player()
+	var player = game.get_player()
 	player.tryAddAttackTarget(body, self)
 
 
 func _on_Hitbox_body_exit( body ):
-	player = game.get_player()
+	var player = game.get_player()
 	player.tryRemoveAttackTarget(body)
 	
 func tryRemoveAttackTarget(body):
-	player = game.get_player()
+	var player = game.get_player()
 	player.tryRemoveAttackTarget(body)

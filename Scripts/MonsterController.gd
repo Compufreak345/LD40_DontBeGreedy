@@ -8,12 +8,12 @@ var RIGHTANGLETOLERANCE = 100
 var LEFTANGLETOLERANCE = 80
 export var canAutoJump = true
 export var canAutoClimb = true
+export var canTurnAroundAtCliffs = false
 export var movingDirection = 1
 func _ready():
 	._ready()
 	# Called every time the node is added to the scene.
 	# Initialization here
-	pass
 
 func _fixed_process(delta):
 	._fixed_process(delta)
@@ -45,10 +45,14 @@ func _on_Hitbox_body_enter( body ):
 
 
 func _on_Jumpbox_Front_area_enter( area ):
-	if canAutoJump && direction > 0 && area.is_in_group("Gap"):
-		jump(true)
+	if area.is_in_group("Gap"):
+		if canAutoJump && !area.is_in_group("DontJump"):
+			jump(true)
 
-func _on_Jumpbox_Back_area_enter( area ):
-	if canAutoJump && direction < 0 && area.is_in_group("Gap"):
-		jump(true)
 
+
+
+func _on_Cliffbox_area_enter( area ):
+	if area.is_in_group("Gap"):
+		if canTurnAroundAtCliffs && !area.is_in_group("DontTurn"):
+			movingDirection = -1 * movingDirection

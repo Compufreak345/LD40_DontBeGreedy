@@ -6,11 +6,13 @@ extends Node2D
 var score = 0
 var rightEnd = 0
 var leftStart = 0
-var playerItems = Dictionary()
 var player setget set_player, get_player
+
 func _ready():
 	rightEnd = Globals.get("display/width")
 	
+func game_over():
+	get_node("root/Game").game_over()
 func update_health(value):
 	get_node("/root/Game").update_health(value)
 	
@@ -21,13 +23,10 @@ func get_player():
 	return player
 
 func add_item(name):
-	playerItems[name] = true
-	player.update_items(playerItems)
+	player.add_item(name)
 
 func remove_item(name) :
-	playerItems.erase(name)
-	player.update_items(playerItems)
+	player.remove_item(name)
 	
 func clear_items():
-	playerItems.clear()
-	player.update_items(playerItems)
+	player.clear_items()

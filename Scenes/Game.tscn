@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Hammer.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/MediKit.png" type="Texture" id=3]
 
 [node name="Game" type="Node2D"]
 
@@ -120,19 +122,18 @@ button/align = 1065353216
 
 [node name="Hammer" type="CheckBox" parent="LevelMenu/Items"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 48.0
+margin/top = 64.0
 margin/right = 110.0
-margin/bottom = 71.0
+margin/bottom = 87.0
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
-text = "Hammer (15)"
+text = "Hammer"
 flat = false
 align = 0
 
@@ -146,14 +147,22 @@ margin/left = 24.0
 margin/top = 24.0
 margin/right = 136.0
 margin/bottom = 38.0
-text = "Well.. A hammer."
+text = "Well.. A hammer.
+Weight: 20kg"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="MediPack" type="CheckBox" parent="LevelMenu/Items"]
+[node name="Sprite" type="Sprite" parent="LevelMenu/Items/Hammer"]
 
-editor/display_folded = true
+transform/pos = Vector2( 152, 24 )
+transform/rot = -20.0
+transform/scale = Vector2( 4, 4 )
+z/z = -2
+texture = ExtResource( 2 )
+
+[node name="MedKit" type="CheckBox" parent="LevelMenu/Items"]
+
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -165,11 +174,11 @@ margin/bottom = 23.0
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
-text = "MediPack (10)"
+text = "MediPack"
 flat = false
 align = 0
 
-[node name="Label" type="Label" parent="LevelMenu/Items/MediPack"]
+[node name="Label" type="Label" parent="LevelMenu/Items/MedKit"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -177,12 +186,19 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 16.0
 margin/top = 24.0
-margin/right = 84.0
-margin/bottom = 38.0
-text = "+5 life"
+margin/right = 103.0
+margin/bottom = 55.0
+text = "+2 life
+Weight: 10 kg"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Sprite" type="Sprite" parent="LevelMenu/Items/MedKit"]
+
+transform/pos = Vector2( 128, 24 )
+transform/scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
 
 [node name="Minigun" type="CheckBox" parent="LevelMenu/Items"]
 
@@ -191,13 +207,13 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 96.0
+margin/top = 128.0
 margin/right = 113.0
-margin/bottom = 119.0
+margin/bottom = 151.0
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
-text = "Minigun (100)"
+text = "Minigun"
 flat = false
 align = 0
 
@@ -209,9 +225,10 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 24.0
 margin/top = 24.0
-margin/right = 64.0
+margin/right = 240.0
 margin/bottom = 38.0
-text = "This gun is heavy... But awesome!"
+text = "This gun is heavy... But awesome!
+Weight: 100kg"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

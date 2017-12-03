@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Sprites/MediKit.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/MedKit.gd" type="Script" id=2]
+
+[node name="MedKit" type="Sprite"]
+
+transform/pos = Vector2( -3.43423, 0.858551 )
+transform/scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 1 )
+flip_h = true
+script/script = ExtResource( 2 )
+weight = 10
+
+

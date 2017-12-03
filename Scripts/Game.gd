@@ -87,3 +87,6 @@ func fill_inventory():
 	for item in items.get_children():
 		if item.is_pressed:
 			game.add_item(item.get_name())
+			
+func finish_level():
+	pause()

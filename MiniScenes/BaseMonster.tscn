@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Scripts/MonsterController.gd" type="Script" id=1]
 
@@ -15,7 +15,12 @@ extents = Vector2( 17, 17 )
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8, 8 )
+extents = Vector2( 8, 5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 5 )
 
 [node name="BaseMonster" type="KinematicBody2D" groups=[
 "Monster",
@@ -31,19 +36,20 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 weight = 350
-maxSpeed = 200
+maxSpeed = 450
 acceleration = 50
 jumpStrength = 70
 climbSpeed = 20
 canMoveThroughWalls = true
-health = 1
-slowSpeed = 10
+health = 10
+slowSpeed = 80
 jumpSpeedBoost = 100
 attackTarget = "Player"
-damage = 1
+damage = 1.0
 timeBetweenHits = 0.5
 canAutoJump = true
 canAutoClimb = true
+canTurnAroundAtCliffs = false
 movingDirection = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -87,21 +93,21 @@ shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Jumpbox_Back" type="Area2D" parent="."]
+[node name="Cliffbox" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -24, 20 )
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 28, 20 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpbox_Back"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cliffbox"]
 
-transform/pos = Vector2( -24, 20 )
-shape = SubResource( 3 )
+transform/pos = Vector2( 28, 20 )
+shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
 
@@ -128,6 +134,6 @@ max_lines_visible = -1
 
 [connection signal="area_enter" from="Jumpbox_Front" to="." method="_on_Jumpbox_Front_area_enter"]
 
-[connection signal="area_enter" from="Jumpbox_Back" to="." method="_on_Jumpbox_Back_area_enter"]
+[connection signal="area_enter" from="Cliffbox" to="." method="_on_Cliffbox_area_enter"]
 
 
