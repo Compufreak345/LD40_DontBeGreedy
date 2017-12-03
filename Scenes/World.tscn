@@ -32,6 +32,8 @@ gravity = 2
 
 [node name="Platforms" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="GrassPlatform1" parent="Platforms" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 32, 528 )
@@ -169,11 +171,13 @@ z/z = 5
 
 [node name="JumpingMonster" parent="Monsters" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 96, 384 )
+weight = 310
+maxSpeed = 50
+canMoveThroughWalls = false
 
 [node name="ClimbingMonster" parent="Monsters" instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 128, 496 )
+transform/pos = Vector2( 384, 352 )
 
 [node name="Walls" type="Node2D" parent="."]
 

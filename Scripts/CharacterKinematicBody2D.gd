@@ -25,6 +25,7 @@ var fallingTime = 0
 var timeSinceLastDrop = 0
 var timeSinceLastClimb = 0
 var sprite
+var scale
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
@@ -33,6 +34,7 @@ func _ready():
 	world = get_node("/root/World")
 	gravity = world.get("gravity")
 	sprite = get_node("Sprite")
+	scale = get_scale()
 	set_health(health)
 	set_fixed_process(true)
 	

@@ -5,7 +5,9 @@ extends "res://Scripts/Monster1.gd"
 # var b = "textvar"
 
 func _ready():
+	get_node("CollisionShape2D")
 	._ready()
+	
 	# Called every time the node is added to the scene.
 	# Initialization here
 	pass

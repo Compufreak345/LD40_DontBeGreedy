@@ -13,5 +13,5 @@ func _ready():
 func _on_Area2D_body_enter( body ):
 	if body.get("canMoveThroughWalls"):
 		var pos = body.get_pos()
-		var offset = body.get_node("CollisionShape2D").get_shape().get_extents().x
+		var offset = body.get_node("CollisionShape2D").get_shape().get_extents().x  * body.get_scale().x
 		body.set_pos(Vector2(world.rightEnd - offset,pos.y))

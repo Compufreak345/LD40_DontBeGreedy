@@ -5,17 +5,17 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8, 16 )
+extents = Vector2( 4, 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 8.1, 16.1 )
+extents = Vector2( 4.1, 4.1 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 4, 14 )
+extents = Vector2( 2, 2 )
 
 [node name="BaseMonster" type="KinematicBody2D" groups=[
 "NPC",
@@ -30,17 +30,17 @@ collision/layers = 2
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-weight = 310
-maxSpeed = 50
+weight = 250
+maxSpeed = 90
 acceleration = 10
 jumpStrength = 80
 climbSpeed = 20
-canMoveThroughWalls = false
+canMoveThroughWalls = true
 health = 1
 slowSpeed = 10
 damage = 1
-canAutoJump = true
-canAutoClimb = true
+canAutoJump = false
+canAutoClimb = false
 movingDirection = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -70,7 +70,7 @@ _update_shape_index = 0
 
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 6, 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 4, 5 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -79,7 +79,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpbox_Front"]
 
-transform/pos = Vector2( 6, 3 )
+transform/pos = Vector2( 4, 5 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
@@ -88,7 +88,7 @@ _update_shape_index = 0
 
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -6, 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -4, 5 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -97,7 +97,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpbox_Back"]
 
-transform/pos = Vector2( -6, 3 )
+transform/pos = Vector2( -4, 5 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
