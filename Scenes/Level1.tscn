@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://MiniScenes/GrassPlatform1.tscn" type="PackedScene" id=2]
@@ -7,40 +7,21 @@
 [ext_resource path="res://MiniScenes/ClimbingMonster.tscn" type="PackedScene" id=5]
 [ext_resource path="res://MiniScenes/ClimbJumpMonster.tscn" type="PackedScene" id=6]
 [ext_resource path="res://MiniScenes/CliffTurningMonster.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scripts/LeftWall.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/RightWall.gd" type="Script" id=9]
-[ext_resource path="res://MiniScenes/LongLadder.tscn" type="PackedScene" id=10]
-[ext_resource path="res://MiniScenes/Ladder.tscn" type="PackedScene" id=11]
-[ext_resource path="res://MiniScenes/Gap.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scripts/Target.gd" type="Script" id=13]
-[ext_resource path="res://Sprites/Target.png" type="Texture" id=14]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 15, 282 )
-
-[sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
-extents = Vector2( 15, 282 )
-
-[sub_resource type="RectangleShape2D" id=3]
-
-custom_solver_bias = 0.0
-extents = Vector2( 512, 16 )
-
-[sub_resource type="RectangleShape2D" id=4]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
+[ext_resource path="res://MiniScenes/Walls.tscn" type="PackedScene" id=8]
+[ext_resource path="res://MiniScenes/LongLadder.tscn" type="PackedScene" id=9]
+[ext_resource path="res://MiniScenes/Ladder.tscn" type="PackedScene" id=10]
+[ext_resource path="res://MiniScenes/Gap.tscn" type="PackedScene" id=11]
+[ext_resource path="res://MiniScenes/Target.tscn" type="PackedScene" id=12]
 
 [node name="World" type="Node2D"]
 
 script/script = ExtResource( 1 )
 gravity = 2
+slippyness = 1
 
 [node name="Platforms" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="GrassPlatform1" parent="Platforms" instance=ExtResource( 2 )]
 
@@ -290,6 +271,8 @@ weight = 310
 
 [node name="Monsters" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="JumpingMonster" parent="Monsters" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 336, 352 )
@@ -315,189 +298,57 @@ maxSpeed = 1000
 acceleration = 100
 movingDirection = -1
 
-[node name="Walls" type="Node2D" parent="."]
-
-editor/display_folded = true
-
-[node name="Left Wall" type="StaticBody2D" parent="Walls"]
-
-transform/pos = Vector2( -32, 32 )
-input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 15, 220 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script/script = ExtResource( 8 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left Wall"]
-
-transform/pos = Vector2( 15, 220 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
-
-[node name="Area2D" type="Area2D" parent="Walls/Left Wall"]
-
-input/pickable = true
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 16, 220 )
-shapes/0/trigger = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left Wall/Area2D"]
-
-transform/pos = Vector2( 16, 220 )
-shape = SubResource( 2 )
-trigger = true
-_update_shape_index = 0
-
-[node name="Right Wall" type="StaticBody2D" parent="Walls"]
-
-transform/pos = Vector2( -32, 32 )
-input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 1009, 220 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script/script = ExtResource( 9 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right Wall"]
-
-transform/pos = Vector2( 1009, 220 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
-
-[node name="Area2D" type="Area2D" parent="Walls/Right Wall"]
-
-input/pickable = true
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 1008, 220 )
-shapes/0/trigger = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right Wall/Area2D"]
-
-transform/pos = Vector2( 1008, 220 )
-shape = SubResource( 2 )
-trigger = true
-_update_shape_index = 0
-
-[node name="Top Wall" type="StaticBody2D" parent="Walls"]
-
-transform/pos = Vector2( -32, 32 )
-input/pickable = false
-shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 512, -80 )
-shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top Wall"]
-
-transform/pos = Vector2( 512, -80 )
-shape = SubResource( 3 )
-trigger = false
-_update_shape_index = 0
+[node name="Walls" parent="." instance=ExtResource( 8 )]
 
 [node name="Ladders" type="Node2D" parent="."]
 
-[node name="LongLadder" parent="Ladders" instance=ExtResource( 10 )]
+editor/display_folded = true
+
+[node name="LongLadder" parent="Ladders" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 192, 416 )
 
-[node name="LongLadder1" parent="Ladders" instance=ExtResource( 10 )]
+[node name="LongLadder1" parent="Ladders" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 288, 272 )
 
-[node name="Ladder" parent="Ladders" instance=ExtResource( 11 )]
+[node name="Ladder" parent="Ladders" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 706.994, 200.981 )
 transform/scale = Vector2( 0.75, 0.75 )
 
 [node name="Gaps" type="Node2D" parent="."]
 
-[node name="Gap" parent="Gaps" instance=ExtResource( 12 )]
+editor/display_folded = true
+
+[node name="Gap" parent="Gaps" instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 160, 384 )
 
-[node name="Gap1" parent="Gaps" instance=ExtResource( 12 )]
+[node name="Gap1" parent="Gaps" instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 192, 384 )
 
-[node name="Gap2" parent="Gaps" instance=ExtResource( 12 )]
+[node name="Gap2" parent="Gaps" instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 720, 96 )
 
-[node name="Gap4" parent="Gaps" instance=ExtResource( 12 )]
+[node name="Gap4" parent="Gaps" instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 384, 240 )
 
-[node name="Gap5" parent="Gaps" instance=ExtResource( 12 )]
+[node name="Gap5" parent="Gaps" instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 416, 240 )
 
-[node name="Gap6" parent="Gaps" instance=ExtResource( 12 )]
+[node name="Gap6" parent="Gaps" instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 448, 240 )
 
-[node name="Gap3" parent="Gaps" instance=ExtResource( 12 )]
+[node name="Gap3" parent="Gaps" instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 880, 96 )
 
-[node name="Target" type="Area2D" parent="."]
-
-transform/pos = Vector2( 288, 48 )
-input/pickable = true
-shapes/0/shape = SubResource( 4 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-script/script = ExtResource( 13 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Target"]
-
-transform/scale = Vector2( 4, 4 )
-texture = ExtResource( 14 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Target"]
-
-shape = SubResource( 4 )
-trigger = false
-_update_shape_index = 0
-
-[connection signal="body_enter" from="Walls/Left Wall/Area2D" to="." method="_on_Area2D_body_enter"]
-
-[connection signal="body_enter" from="Walls/Left Wall/Area2D" to="Walls/Left Wall" method="_on_Area2D_body_enter"]
-
-[connection signal="body_enter" from="Walls/Right Wall/Area2D" to="Walls/Right Wall" method="_on_RightWall_body_enter"]
-
-[connection signal="body_enter" from="Target" to="Target" method="_on_Target_body_enter"]
+[node name="Target" parent="." instance=ExtResource( 12 )]
 
 

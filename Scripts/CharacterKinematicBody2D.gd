@@ -18,7 +18,8 @@ var _climbing = false
 var _jumping = false
 var canClimb = false
 var isOnFloor = false
-var gravity = 200
+var gravity = 2
+var slippyness = 1
 var wasClimbing = false
 var direction = 1 setget set_direction, get_direction # 1 = right 0 = standing -1 = left
 export var slowSpeed = 80
@@ -35,6 +36,7 @@ var hittingElements = Dictionary()
 export var damage = 1.0
 export var timeBetweenHits = 0.5
 var damageLabel
+var sounds
 
 # class member variables go here, for example:
 # var a = 2
@@ -44,8 +46,10 @@ func _ready():
 	world = get_node("/root/Game/World")
 	game = get_node("/root/GameData")
 	gravity = world.get("gravity")
+	slippyness = world.get("slippyness")
 	sprite = get_node("Sprite")
 	damageLabel = get_node("DamageLabel")
+	sounds = get_node("/root/Sounds")
 	scale = get_scale()
 	set_health(health)
 	set_fixed_process(true)
@@ -71,7 +75,6 @@ func set_direction(value, force = false):
 	var prevDirection = direction
 	
 	if prevDirection != value && value != 0 || force:
-		print(get_name() + ": Direction changed from " + str(prevDirection) + " to " + str(value))
 		direction = value
 		var scale = get_scale()
 		if direction == -1:
@@ -94,13 +97,15 @@ func jump(doIt):
 		_jumping = true
 		
 func _moveCharacter(delta):
-	gravity = world.get("gravity")
 	if !_climbing || !canClimb:
 		velocity.y += delta * gravity * weight * 2
 		isClimbing = false
 	var motion = velocity * delta
 	if stoppedJumping:
-		velocity.x = velocity.x - jumpSpeedBoost
+		if velocity.x > 0 :
+			velocity.x = velocity.x - jumpSpeedBoost
+		elif velocity.x < 0 :
+			velocity.x = velocity.x + jumpSpeedBoost
 		stoppedJumping = false
 	
 	if _climbing && canClimb:
@@ -123,6 +128,11 @@ func _moveCharacter(delta):
 			velocity.y = -1666 * jumpStrength / weight
 			isJumping = true
 			_jumping = false
+			# TODO: Make better sound selection, e.g. in player & monster-class
+			if is_in_group("Player"):
+				sounds.play("Player_Jump")
+			elif is_in_group("Monster"):
+				sounds.play("Monster_Jump")
 		elif isJumping && isOnFloor:
 			isJumping = false
 			stoppedJumping = true
@@ -145,6 +155,10 @@ func get_health():
 func hit(attacker):
 	set_health(get_health() - attacker.damage)
 	showDamage(attacker.damage)
+	if is_in_group("Monster"):
+		sounds.play("Monster_Hit")
+	elif is_in_group("Player"):
+		sounds.play("Player_Hit")
 	if get_health() <= 0:
 		die(attacker)
 
@@ -153,6 +167,11 @@ func die(attacker):
 	if attacker != null && attacker.has_method("tryRemoveAttackTarget"):
 		# We are dead and cannot be attacked anymore!
 		attacker.tryRemoveAttackTarget(self)
+		
+	if is_in_group("Monster"):
+		sounds.play("Monster_Died")
+	elif is_in_group("Player"):
+		sounds.play("Player_Died")
 	set_scale(Vector2(0,0))
 	
 
@@ -174,14 +193,26 @@ func _moveLeft(maxSpeed, acceleration):
 	if isJumping:
 		maxSpeed += jumpSpeedBoost
 		acceleration += jumpSpeedBoost
-	var newX = max(velocity.x - acceleration, (-1 * float(maxSpeed) / weight) * 100)
+	var acc = acceleration
+	if !isClimbing: # ladders are not slippy
+		if velocity.x > 0: # we are moving right - slip hard while breaking
+			acc = float(acceleration)/(slippyness * 5)
+		else:
+			acc = float(acceleration)/(slippyness)
+	var newX = max(velocity.x - acc, (-1 * float(maxSpeed) / weight) * 100)
 	velocity.x = newX
 	
 func _moveRight(maxSpeed, acceleration):
 	if isJumping:
 		maxSpeed += jumpSpeedBoost
 		acceleration += jumpSpeedBoost
-	var newX = min(velocity.x + acceleration, (float(maxSpeed)  / weight) * 100)
+	
+	var acc = acceleration
+	if velocity.x < 0: # we are moving left - slip hard while breaking
+		acc = float(acceleration)/(slippyness * 5)
+	else:
+		acc = float(acceleration)/(slippyness)
+	var newX = min(velocity.x + acc, (float(maxSpeed)  / weight) * 100)
 	velocity.x = newX
 
 func _stop(stopSpeed, targetSpeed):

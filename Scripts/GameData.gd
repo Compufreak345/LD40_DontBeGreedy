@@ -12,7 +12,7 @@ func _ready():
 	rightEnd = Globals.get("display/width")
 	
 func game_over():
-	get_node("root/Game").game_over()
+	get_node("/root/Game").game_over()
 func update_health(value):
 	get_node("/root/Game").update_health(value)
 	

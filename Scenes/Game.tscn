@@ -12,7 +12,6 @@ autoStart = false
 [node name="MainMenu" type="Node2D" parent="."]
 
 process/pause_mode = 2
-visibility/visible = false
 
 [node name="Welcome" type="Label" parent="MainMenu"]
 
@@ -47,6 +46,23 @@ shortcut = null
 text = "Start Level 1"
 flat = false
 
+[node name="Start Level 2" type="Button" parent="MainMenu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 384.0
+margin/top = 64.0
+margin/right = 475.0
+margin/bottom = 84.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Start Level 2"
+flat = false
+
 [node name="Resume" type="Button" parent="MainMenu"]
 
 visibility/visible = false
@@ -67,6 +83,7 @@ flat = false
 [node name="LevelMenu" type="Node2D" parent="."]
 
 process/pause_mode = 2
+visibility/visible = false
 __meta__ = {
 "_edit_lock_": true
 }
@@ -250,6 +267,8 @@ lines_skipped = 0
 max_lines_visible = -1
 
 [connection signal="pressed" from="MainMenu/Start Level 1" to="." method="_on_Start_Level_1_pressed"]
+
+[connection signal="pressed" from="MainMenu/Start Level 2" to="." method="_on_Start_Level_2_pressed"]
 
 [connection signal="pressed" from="MainMenu/Resume" to="." method="_on_Resume_pressed"]
 

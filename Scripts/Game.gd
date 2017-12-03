@@ -12,6 +12,7 @@ var levelMenu
 var levelRunning = false
 var healthLabel
 var game
+var gameOverScreen
 export var autoStart = false
 
 func _ready():
@@ -20,6 +21,7 @@ func _ready():
 	hud = get_node("HUD")
 	healthLabel = hud.get_node("HealthLabel")
 	levelMenu = get_node("LevelMenu")
+	var gameOverScreen = get_node("GameOverScreen")
 	game = get_node("/root/GameData")
 	pause()
 	set_process_input(true)
@@ -58,16 +60,18 @@ func clearLevel():
 	if loadedLevel != null:
 		loadedLevel.free()
 
-func _on_Start_Level_1_pressed():
+func initLevel(scene):
 	levelRunning = false
 	clearLevel()
-	var scene = preload("res://Scenes/Level1.tscn")
 	var node = scene.instance()
 	loadedLevel = node
 	loadedLevel.hide()
 	add_child(node)
 	mainMenu.hide()
 	levelMenu.show()
+func _on_Start_Level_1_pressed():
+	var scene = preload("res://Scenes/Level1.tscn")
+	initLevel(scene)
 
 
 
@@ -90,3 +94,11 @@ func fill_inventory():
 			
 func finish_level():
 	pause()
+	
+func game_over():
+	pause()
+	
+
+func _on_Start_Level_2_pressed():
+	var scene = preload("res://Scenes/Level2.tscn")
+	initLevel(scene)
