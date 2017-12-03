@@ -13,7 +13,7 @@ extents = Vector2( 8, 16 )
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 3, 10 )
+extents = Vector2( 5, 11 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -37,6 +37,9 @@ canMoveThroughWalls = true
 health = 10
 slowSpeed = 10
 jumpSpeedBoost = 100
+attackTarget = "Monster"
+damage = 1
+timeBetweenHits = 0.5
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -60,9 +63,11 @@ __meta__ = {
 
 [node name="Hammer" type="Node2D" parent="Items"]
 
+transform/scale = Vector2( 1.5, 1.5 )
+
 [node name="Position" type="Position2D" parent="Items/Hammer"]
 
-transform/pos = Vector2( 9, 3 )
+transform/pos = Vector2( 8, 3 )
 
 [node name="KinematicBody" type="KinematicBody2D" parent="Items/Hammer/Position"]
 
@@ -72,6 +77,8 @@ collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 3 )
+damage = 5
+timeBetweenHits = 0.1
 
 [node name="Sprite" type="Sprite" parent="Items/Hammer/Position/KinematicBody"]
 
@@ -80,7 +87,7 @@ texture = ExtResource( 4 )
 
 [node name="Hitbox" type="Area2D" parent="Items/Hammer/Position/KinematicBody"]
 
-visibility/visible = false
+transform/pos = Vector2( 2, -1 )
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -9 )
@@ -89,15 +96,18 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Items/Hammer/Position/KinematicBody/Hitbox"]
 
-visibility/visible = false
 transform/pos = Vector2( 0, -9 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
-[connection signal="body_enter" from="Items/Hammer/Position/KinematicBody/Hitbox" to="." method="_on_Hitbox_body_enter"]
+[connection signal="body_enter" from="Items/Hammer/Position/KinematicBody/Hitbox" to="Items/Hammer/Position/KinematicBody" method="_on_Hitbox_body_enter"]
+
+[connection signal="body_exit" from="Items/Hammer/Position/KinematicBody/Hitbox" to="Items/Hammer/Position/KinematicBody" method="_on_Hitbox_body_exit"]
 
 

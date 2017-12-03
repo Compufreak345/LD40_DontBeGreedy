@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://Scripts/Monster1.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/MonsterController.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -18,7 +18,7 @@ custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
 [node name="BaseMonster" type="KinematicBody2D" groups=[
-"NPC",
+"Monster",
 ]]
 
 transform/pos = Vector2( 320, 496 )
@@ -30,18 +30,20 @@ collision/layers = 2
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-weight = 250
-maxSpeed = 90
-acceleration = 10
-jumpStrength = 80
+weight = 350
+maxSpeed = 200
+acceleration = 50
+jumpStrength = 70
 climbSpeed = 20
 canMoveThroughWalls = true
 health = 1
 slowSpeed = 10
 jumpSpeedBoost = 100
+attackTarget = "Player"
 damage = 1
-canAutoJump = false
-canAutoClimb = false
+timeBetweenHits = 0.5
+canAutoJump = true
+canAutoClimb = true
 movingDirection = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -11,6 +11,8 @@ var hud
 var levelMenu
 var levelRunning = false
 var healthLabel
+export var autoStart = true
+
 func _ready():
 	mainMenu = get_node("MainMenu")
 	resumeButton = mainMenu.get_node("Resume")
@@ -19,6 +21,9 @@ func _ready():
 	levelMenu = get_node("LevelMenu")
 	pause()
 	set_process_input(true)
+	if autoStart:
+		_on_Start_Level_1_pressed()
+		_on_StartLevel_pressed()
 	
 func update_health(value):
 	healthLabel.set_text("Health:" + str(value))

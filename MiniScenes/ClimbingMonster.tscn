@@ -6,7 +6,7 @@
 [node name="ClimbingMonster" instance=ExtResource( 1 )]
 
 transform/scale = Vector2( 0.5, 1 )
-canAutoClimb = true
+timeBetweenHits = 0.5
 
 [node name="Sprite" type="Sprite" parent="."]
 

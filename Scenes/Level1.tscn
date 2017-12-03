@@ -170,11 +170,10 @@ transform/pos = Vector2( 96, 528 )
 
 transform/pos = Vector2( 48, 496 )
 z/z = 5
-jumpSpeedBoost = 100
+health = 500
+timeBetweenHits = 0.5
 
 [node name="Monsters" type="Node2D" parent="."]
-
-editor/display_folded = true
 
 [node name="JumpingMonster" parent="Monsters" instance=ExtResource( 4 )]
 
@@ -182,10 +181,12 @@ transform/pos = Vector2( 32, 384 )
 weight = 300
 jumpStrength = 120
 canMoveThroughWalls = false
+health = 10
 
 [node name="ClimbingMonster" parent="Monsters" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 96, 496 )
+health = 10
 
 [node name="Walls" type="Node2D" parent="."]
 

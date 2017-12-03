@@ -30,6 +30,11 @@ var scale
 var game
 export var jumpSpeedBoost = 100
 var stoppedJumping = false
+export var attackTarget = "Player"
+var hittingElements = Dictionary()
+export var damage = 1
+export var timeBetweenHits = 0.5
+
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
@@ -45,6 +50,8 @@ func _ready():
 	
 func _fixed_process(delta):
 	_moveCharacter(delta)
+	_autoAttack(delta)
+	
 	if isFalling:
 		fallingTime += delta
 		timeSinceLastDrop = 0
@@ -58,12 +65,25 @@ func _fixed_process(delta):
 
 func set_direction(value):
 	var prevDirection = direction
-	direction = value
-	if prevDirection != direction:
-		if direction > 0 && sprite!=null:
-			sprite.set_flip_h(false)
-		elif direction < 0  && sprite!=null:
-			sprite.set_flip_h(true)
+	
+	if prevDirection != value && value != 0:
+		direction = value
+		var scale = get_scale()
+		if direction == -1:
+			set_scale(Vector2(-1 * scale.x, scale.y))
+		elif direction == 1:
+			set_scale(Vector2(scale.x, scale.y))
+		#if direction > 0 && sprite!=null:
+			#rotate(self,0)
+			
+		#elif direction < 0  && sprite!=null:
+			#rotate(self,180)
+			
+func rotate(node, deg):
+	if node.is_in_group("RotatingObject"):
+		node.set_rotd(deg)
+	for child in node.get_children():
+		rotate(child, deg)
 func climb(doIt):
 	if !doIt:
 		_climbing = false
@@ -125,15 +145,19 @@ func set_health(value):
 
 func get_health():
 	return health
-
-func hit(strength):
-	set_health(get_health() - strength)
+	
+func hit(attacker):
+	set_health(get_health() - attacker.damage)
 	if get_health() <= 0:
-		die()
+		die(attacker)
 
-func die():
-	print("I am dead.")
-	#TODO: Die
+func die(attacker):
+	print(get_name() + ": I am dead.")
+	if attacker != null && attacker.has_method("tryRemoveAttackTarget"):
+		# We are dead and cannot be attacked anymore!
+		attacker.tryRemoveAttackTarget(self)
+	set_scale(Vector2(0,0))
+	
 
 func enter_ladder(ladder):
 	canClimb = true
@@ -179,4 +203,41 @@ func stop():
 func moveRight():
 	set_direction(1)
 	_moveRight(maxSpeed, acceleration)
+
+func _autoAttack(delta):
+	for element in hittingElements.values():
+		element.nextHitIn -= delta
+		if element.nextHitIn <= 0:
+			attack(element.body, element.attacker)
+			element.nextHitIn = element.attacker.timeBetweenHits
+
+func attack(target, attacker):
+	do_damage(target, attacker)
 	
+func do_damage(target, attacker):
+	if target.has_method("hit"):
+		target.hit(attacker)
+
+func tryAddAttackTarget(body, attacker):
+	if body.is_in_group(attackTarget):
+		var element = HittingElement.new(body, 0, attacker)
+		hittingElements[body.get_instance_ID()] = element
+
+func tryRemoveAttackTarget(body):
+	if body.is_in_group(attackTarget):
+		hittingElements.erase(body.get_instance_ID())
+
+func _on_Hitbox_body_enter( body ):
+	tryAddAttackTarget(body, self)
+			
+func _on_Hitbox_body_exit( body ):
+	tryRemoveAttackTarget(body)
+
+class HittingElement:
+	var body
+	var nextHitIn = 0.5
+	var attacker
+	func _init(_body, _nextHitIn, _attacker):
+		body = _body
+		nextHitIn = _nextHitIn
+		attacker = _attacker
