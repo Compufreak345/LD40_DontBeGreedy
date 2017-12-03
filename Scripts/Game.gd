@@ -98,9 +98,11 @@ func fill_inventory():
 			game.add_item(item.get_name())
 			
 func finish_level():
+	winningScreen.show()
 	pause()
 	
 func game_over():
+	losingScreen.show()
 	pause()
 	
 

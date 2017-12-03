@@ -91,26 +91,55 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 384.0
-margin/top = 192.0
-margin/right = 448.0
-margin/bottom = 212.0
+margin/left = 400.0
+margin/top = 128.0
+margin/right = 464.0
+margin/bottom = 148.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Resume"
 flat = false
 
-[node name="Label" type="Label" parent="MainMenu"]
+[node name="Hints" type="Label" parent="MainMenu"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 560.0
+margin/top = 0.0
+margin/right = 868.0
+margin/bottom = 99.0
+text = "Hints:
+Use arrow keys left and right or w and a to move
+Use space or shift to jump
+Use w or arrow up to climb
+
+Good luck!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Warning" type="Label" parent="MainMenu"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 14.0
+margin/top = 24.0
+margin/right = 625.0
+margin/bottom = 174.0
+custom_colors/font_color = Color( 0.972656, 0.0341949, 0.0341949, 1 )
+text = "WARNING!
+
+Please play this game in Firefox. 
+Unfortunately, the Godot-Engine in the current stable build 
+has severe issues with other browsers
+and you will not have any fun if you use them.
+
+Sorry, I hope you will still have fun with this little game."
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -288,6 +317,7 @@ max_lines_visible = -1
 
 [node name="HUD" type="Node2D" parent="."]
 
+visibility/visible = false
 z/z = 3
 
 [node name="HealthLabel" type="Label" parent="HUD"]
@@ -296,16 +326,11 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 584.0
-margin/top = 48.0
-margin/right = 624.0
-margin/bottom = 62.0
-text = "Hints:
-Use arrow keys left and right or w and a to move
-Use space or shift to jump
-Use w or arrow up to climb
-
-Good luck!"
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 100.0
+margin/bottom = 50.0
+text = "Health: 100"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -313,6 +338,7 @@ max_lines_visible = -1
 [node name="WinningScreen" type="Node2D" parent="."]
 
 visibility/visible = false
+z/z = 3
 
 [node name="Label" type="Label" parent="WinningScreen"]
 
@@ -364,6 +390,7 @@ offset = Vector2( 50, 0 )
 [node name="LosingScreen" type="Node2D" parent="."]
 
 visibility/visible = false
+z/z = 3
 
 [node name="Label" type="Label" parent="LosingScreen"]
 
