@@ -38,6 +38,7 @@ climbSpeed = 20
 canMoveThroughWalls = false
 health = 1
 slowSpeed = 10
+jumpSpeedBoost = 100
 damage = 1
 canAutoJump = true
 canAutoClimb = true

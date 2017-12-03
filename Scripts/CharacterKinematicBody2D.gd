@@ -9,6 +9,7 @@ export var canMoveThroughWalls = true
 var laddersTouched = Dictionary()
 var isFalling = false
 var isClimbing = false
+var isJumping = false
 export var health = 10 setget set_health, get_health
 var velocity = Vector2()
 # Angle in degrees towards either side that the player can consider "floor"
@@ -26,6 +27,8 @@ var timeSinceLastDrop = 0
 var timeSinceLastClimb = 0
 var sprite
 var scale
+export var jumpSpeedBoost = 100
+var stoppedJumping = false
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
@@ -78,7 +81,9 @@ func _moveCharacter(delta):
 		velocity.y += delta * gravity * weight * 2
 		isClimbing = false
 	var motion = velocity * delta
-	
+	if stoppedJumping:
+		velocity.x = velocity.x - jumpSpeedBoost
+		stoppedJumping = false
 	
 	if _climbing && canClimb:
 		velocity.y = -1666 * climbSpeed/weight
@@ -98,7 +103,11 @@ func _moveCharacter(delta):
 		if _jumping && isOnFloor:
 			# character is standing on the ground and wants to jump
 			velocity.y = -1666 * jumpStrength / weight
+			isJumping = true
 			_jumping = false
+		elif isJumping && isOnFloor:
+			isJumping = false
+			stoppedJumping = true
 			
 		move(motion)
 	else:
@@ -141,10 +150,16 @@ func moveLeft():
 
 
 func _moveLeft(maxSpeed, acceleration):
+	if isJumping:
+		maxSpeed += jumpSpeedBoost
+		acceleration += jumpSpeedBoost
 	var newX = max(velocity.x-acceleration, -1*maxSpeed)
 	velocity.x = newX
 	
 func _moveRight(maxSpeed, acceleration):
+	if isJumping:
+		maxSpeed += jumpSpeedBoost
+		acceleration += jumpSpeedBoost
 	var newX = min(velocity.x+acceleration, maxSpeed)
 	velocity.x = newX
 

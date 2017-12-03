@@ -5,12 +5,13 @@
 
 [node name="JumpingMonster" instance=ExtResource( 1 )]
 
-transform/scale = Vector2( 2, 4 )
+transform/scale = Vector2( 0.5, 1 )
+jumpSpeedBoost = 100
 canAutoJump = true
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/scale = Vector2( 1, 0.5 )
+transform/scale = Vector2( 4, 2 )
 texture = ExtResource( 2 )
 
 

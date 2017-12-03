@@ -5,17 +5,17 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 4, 4 )
+extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 4.1, 4.1 )
+extents = Vector2( 17, 17 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 2, 2 )
+extents = Vector2( 8, 8 )
 
 [node name="BaseMonster" type="KinematicBody2D" groups=[
 "NPC",
@@ -38,6 +38,7 @@ climbSpeed = 20
 canMoveThroughWalls = true
 health = 1
 slowSpeed = 10
+jumpSpeedBoost = 100
 damage = 1
 canAutoJump = false
 canAutoClimb = false
@@ -70,7 +71,7 @@ _update_shape_index = 0
 
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 4, 5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 24, 20 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -79,7 +80,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpbox_Front"]
 
-transform/pos = Vector2( 4, 5 )
+transform/pos = Vector2( 24, 20 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
@@ -88,7 +89,7 @@ _update_shape_index = 0
 
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -4, 5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -24, 20 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -97,7 +98,7 @@ angular_damp = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jumpbox_Back"]
 
-transform/pos = Vector2( -4, 5 )
+transform/pos = Vector2( -24, 20 )
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
