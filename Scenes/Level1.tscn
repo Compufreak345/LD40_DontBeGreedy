@@ -32,6 +32,8 @@ gravity = 2
 
 [node name="Platforms" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="GrassPlatform1" parent="Platforms" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 32, 528 )
@@ -172,18 +174,18 @@ jumpSpeedBoost = 100
 
 [node name="Monsters" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="JumpingMonster" parent="Monsters" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 32, 384 )
 weight = 300
 jumpStrength = 120
 canMoveThroughWalls = false
-jumpSpeedBoost = 100
 
 [node name="ClimbingMonster" parent="Monsters" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 96, 496 )
-jumpSpeedBoost = 100
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -313,21 +315,6 @@ transform/pos = Vector2( 288, 288 )
 [node name="Ladder3" parent="Ladders" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 288, 368 )
-
-[node name="HealthLabel" type="Label" parent="."]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 50.0
-margin/bottom = 14.0
-text = "Health: "
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="Gap" parent="." instance=ExtResource( 9 )]
 

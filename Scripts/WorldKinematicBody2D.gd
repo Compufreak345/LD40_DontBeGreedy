@@ -12,7 +12,7 @@ var world
 
 func _ready():
 	set_fixed_process(true)
-	world = get_node("/root/World")
+	world = get_node("/root/Game/World")
 	set_health(health)
 	
 	

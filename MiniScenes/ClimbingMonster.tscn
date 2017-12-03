@@ -6,7 +6,6 @@
 [node name="ClimbingMonster" instance=ExtResource( 1 )]
 
 transform/scale = Vector2( 0.5, 1 )
-jumpSpeedBoost = 100
 canAutoClimb = true
 
 [node name="Sprite" type="Sprite" parent="."]

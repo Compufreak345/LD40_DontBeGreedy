@@ -7,7 +7,7 @@ var world
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	world = get_node("/root/World")
+	world = get_node("/root/Game/World")
 
 
 func _on_RightWall_body_enter( body ):

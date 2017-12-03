@@ -4,7 +4,11 @@ extends Node2D
 # var a = 2
 # var b = "textvar"
 var score = 0
+var rightEnd = 0
+var leftStart = 0
+var playerItems = Array()
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+	rightEnd = Globals.get("display/width")
+	
+func update_health(value):
+	get_node("/root/Game").update_health(value)

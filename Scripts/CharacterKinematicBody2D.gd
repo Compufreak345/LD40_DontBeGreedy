@@ -27,6 +27,7 @@ var timeSinceLastDrop = 0
 var timeSinceLastClimb = 0
 var sprite
 var scale
+var game
 export var jumpSpeedBoost = 100
 var stoppedJumping = false
 # class member variables go here, for example:
@@ -34,7 +35,8 @@ var stoppedJumping = false
 # var b = "textvar"
 var world
 func _ready():
-	world = get_node("/root/World")
+	world = get_node("/root/Game/World")
+	game = get_node("/root/GameData")
 	gravity = world.get("gravity")
 	sprite = get_node("Sprite")
 	scale = get_scale()
@@ -86,7 +88,7 @@ func _moveCharacter(delta):
 		stoppedJumping = false
 	
 	if _climbing && canClimb:
-		velocity.y = -1666 * climbSpeed/weight
+		velocity.y = -1666 * climbSpeed/weight * delta * 100
 		isClimbing = true
 	elif wasClimbing:
 		_climbing = false
@@ -120,8 +122,6 @@ func _moveCharacter(delta):
 	
 func set_health(value):
 	health = value
-	if world != null:
-		world.update_health(health)
 
 func get_health():
 	return health

@@ -1,0 +1,238 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
+
+[node name="Game" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="MainMenu" type="Node2D" parent="."]
+
+process/pause_mode = 2
+visibility/visible = false
+
+[node name="Welcome" type="Label" parent="MainMenu"]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 320.0
+margin/top = 0.0
+margin/right = 424.0
+margin/bottom = 14.0
+text = "Don't be Greedy"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Start Level 1" type="Button" parent="MainMenu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 384.0
+margin/top = 32.0
+margin/right = 475.0
+margin/bottom = 52.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Start Level 1"
+flat = false
+
+[node name="Resume" type="Button" parent="MainMenu"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 384.0
+margin/top = 192.0
+margin/right = 448.0
+margin/bottom = 212.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Resume"
+flat = false
+
+[node name="LevelMenu" type="Node2D" parent="."]
+
+process/pause_mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="LevelMenu"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 208.0
+margin/top = 0.0
+margin/right = 802.0
+margin/bottom = 48.0
+text = "Remember:
+Every item has a weight and will slow you down and let you jump less high. So pick carefully. 
+The more you have, the worse it is!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="StartLevel" type="Button" parent="LevelMenu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 528.0
+margin/top = 280.0
+margin/right = 593.0
+margin/bottom = 300.0
+custom_colors/font_color = Color( 0.138672, 1, 0.015625, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Let's go!"
+flat = false
+
+[node name="VButtonArray" type="VButtonArray" parent="LevelMenu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 208.0
+margin/top = 48.0
+margin/right = 248.0
+margin/bottom = 88.0
+flat = false
+button/count = 0
+button/min_button_size = -1.0
+button/align = 1065353216
+
+[node name="Hammer" type="CheckBox" parent="LevelMenu/VButtonArray"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 48.0
+margin/right = 110.0
+margin/bottom = 71.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Hammer (15)"
+flat = false
+align = 0
+
+[node name="Label" type="Label" parent="LevelMenu/VButtonArray/Hammer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 24.0
+margin/top = 24.0
+margin/right = 136.0
+margin/bottom = 38.0
+text = "Well.. A hammer."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MediPack" type="CheckBox" parent="LevelMenu/VButtonArray"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 115.0
+margin/bottom = 23.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "MediPack (10)"
+flat = false
+align = 0
+
+[node name="Label" type="Label" parent="LevelMenu/VButtonArray/MediPack"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 24.0
+margin/right = 84.0
+margin/bottom = 38.0
+text = "+5 life"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Minigun" type="CheckBox" parent="LevelMenu/VButtonArray"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 96.0
+margin/right = 113.0
+margin/bottom = 119.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Minigun (100)"
+flat = false
+align = 0
+
+[node name="Label" type="Label" parent="LevelMenu/VButtonArray/Minigun"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 24.0
+margin/top = 24.0
+margin/right = 64.0
+margin/bottom = 38.0
+text = "This gun is heavy... But awesome!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HUD" type="Node2D" parent="."]
+
+[node name="HealthLabel" type="Label" parent="HUD"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 14.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="MainMenu/Start Level 1" to="." method="_on_Start_Level_1_pressed"]
+
+[connection signal="pressed" from="MainMenu/Resume" to="." method="_on_Resume_pressed"]
+
+[connection signal="pressed" from="LevelMenu/StartLevel" to="." method="_on_StartLevel_pressed"]
+
+

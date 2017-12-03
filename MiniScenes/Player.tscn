@@ -1,18 +1,25 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Hammer.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/Hammer.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8, 16 )
 
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3, 10 )
+
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
 ]]
 
-transform/pos = Vector2( 45.4306, 223.633 )
+transform/pos = Vector2( 10.7319, -2.36102 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -21,9 +28,6 @@ collision/layers = 3
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 weight = 300
 maxSpeed = 200
 acceleration = 50
@@ -32,16 +36,68 @@ climbSpeed = 20
 canMoveThroughWalls = true
 health = 10
 slowSpeed = 10
+jumpSpeedBoost = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+visibility/visible = false
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Hammer" type="Node2D" parent="Items"]
+
+[node name="Position" type="Position2D" parent="Items/Hammer"]
+
+transform/pos = Vector2( 9, 3 )
+
+[node name="KinematicBody" type="KinematicBody2D" parent="Items/Hammer/Position"]
+
+transform/scale = Vector2( 1.5, 1.5 )
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Items/Hammer/Position/KinematicBody"]
+
+transform/pos = Vector2( 0, -8 )
+texture = ExtResource( 4 )
+
+[node name="Hitbox" type="Area2D" parent="Items/Hammer/Position/KinematicBody"]
+
+visibility/visible = false
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -9 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Items/Hammer/Position/KinematicBody/Hitbox"]
+
+visibility/visible = false
+transform/pos = Vector2( 0, -9 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="body_enter" from="Items/Hammer/Position/KinematicBody/Hitbox" to="." method="_on_Hitbox_body_enter"]
 
 
