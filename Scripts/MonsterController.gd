@@ -10,11 +10,14 @@ export var canAutoJump = true
 export var canAutoClimb = true
 export var canTurnAroundAtCliffs = false
 export var movingDirection = 1
+# Dirty hack, but no time
+export var fireSpitterLastSpit = -1
 func _ready():
-	
 	._ready()
-	# Called every time the node is added to the scene.
-	# Initialization here
+	# Dirty hack, but no time
+	if fireSpitterLastSpit != -1:
+		var enhancements = get_node("FireSpitterEnhancements")
+		enhancements.timeSinceLastShot = fireSpitterLastSpit
 
 func _fixed_process(delta):
 	._fixed_process(delta)
@@ -22,7 +25,7 @@ func _fixed_process(delta):
 
 func moveMyMonster(delta):
 	
-	if(fallingTime < 0.3 && (timeSinceLastDrop > 1 || timeSinceLastClimb<0.25) && canClimb && canAutoClimb):
+	if(fallingTime < 0.1 && (timeSinceLastDrop > 1 || timeSinceLastClimb<0.25) && canClimb && canAutoClimb):
 		slowDown()
 		climb(true)
 	elif movingDirection > 0:

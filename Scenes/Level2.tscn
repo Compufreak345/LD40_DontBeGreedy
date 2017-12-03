@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://Scripts/World.gd" type="Script" id=1]
-[ext_resource path="res://MiniScenes/IcePlatform.tscn" type="PackedScene" id=2]
-[ext_resource path="res://MiniScenes/CliffTurningMonster.tscn" type="PackedScene" id=3]
-[ext_resource path="res://MiniScenes/LongLadder.tscn" type="PackedScene" id=4]
-[ext_resource path="res://MiniScenes/Ladder.tscn" type="PackedScene" id=5]
-[ext_resource path="res://MiniScenes/Target.tscn" type="PackedScene" id=6]
-[ext_resource path="res://MiniScenes/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://MiniScenes/Walls.tscn" type="PackedScene" id=8]
+[ext_resource path="res://MiniScenes/Walls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MiniScenes/IcePlatform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://MiniScenes/CliffTurningMonster.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MiniScenes/LongLadder.tscn" type="PackedScene" id=5]
+[ext_resource path="res://MiniScenes/Ladder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://MiniScenes/Target.tscn" type="PackedScene" id=7]
+[ext_resource path="res://MiniScenes/Player.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Node2D"]
 
@@ -15,175 +15,225 @@ script/script = ExtResource( 1 )
 gravity = 2
 slippyness = 4
 
-[node name="Platforms" type="Node2D" parent="."]
+[node name="Walls" parent="." instance=ExtResource( 2 )]
 
-[node name="IcePlatform" parent="Platforms" instance=ExtResource( 2 )]
+[node name="Scaling" type="Node2D" parent="."]
 
-transform/pos = Vector2( 32, 528 )
+transform/scale = Vector2( 0.75, 0.75 )
 
-[node name="IcePlatform1" parent="Platforms" instance=ExtResource( 2 )]
+[node name="Platforms" type="Node2D" parent="Scaling"]
 
-transform/pos = Vector2( 96, 528 )
+[node name="IcePlatform" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform2" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 32, 704 )
 
-transform/pos = Vector2( 160, 528 )
+[node name="IcePlatform1" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform3" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 96, 704 )
 
-transform/pos = Vector2( 224, 528 )
+[node name="IcePlatform2" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform4" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 160, 704 )
 
-transform/pos = Vector2( 288, 528 )
+[node name="IcePlatform3" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform5" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 224, 704 )
 
-transform/pos = Vector2( 352, 528 )
+[node name="IcePlatform4" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform6" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 288, 704 )
 
-transform/pos = Vector2( 416, 528 )
+[node name="IcePlatform5" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform7" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 352, 704 )
 
-transform/pos = Vector2( 480, 528 )
+[node name="IcePlatform6" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform8" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 416, 704 )
 
-transform/pos = Vector2( 544, 528 )
+[node name="IcePlatform7" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform9" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 480, 704 )
 
-transform/pos = Vector2( 608, 528 )
+[node name="IcePlatform8" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform10" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 544, 704 )
 
-transform/pos = Vector2( 672, 528 )
+[node name="IcePlatform9" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform11" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 608, 704 )
 
-transform/pos = Vector2( 736, 528 )
+[node name="IcePlatform10" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform12" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 672, 704 )
 
-transform/pos = Vector2( 800, 528 )
+[node name="IcePlatform11" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform13" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 736, 704 )
 
-transform/pos = Vector2( 864, 528 )
+[node name="IcePlatform12" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform14" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 800, 704 )
 
-transform/pos = Vector2( 928, 528 )
+[node name="IcePlatform13" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform15" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 864, 704 )
 
-transform/pos = Vector2( 928, 384 )
+[node name="IcePlatform14" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform16" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 928, 704 )
 
-transform/pos = Vector2( 800, 384 )
+[node name="IcePlatform27" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform17" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 992, 704 )
 
-transform/pos = Vector2( 736, 384 )
+[node name="IcePlatform34" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform18" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 1056, 704 )
 
-transform/pos = Vector2( 608, 384 )
+[node name="IcePlatform35" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform19" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 1120, 704 )
 
-transform/pos = Vector2( 544, 384 )
+[node name="IcePlatform36" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform20" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 1184, 704 )
 
-transform/pos = Vector2( 480, 384 )
+[node name="IcePlatform37" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform21" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 1248, 704 )
 
-transform/pos = Vector2( 416, 384 )
+[node name="IcePlatform38" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform22" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 976, 288 )
 
-transform/pos = Vector2( 352, 384 )
+[node name="IcePlatform40" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform23" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 1120, 384 )
 
-transform/pos = Vector2( 288, 320 )
+[node name="IcePlatform41" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform24" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 1200, 272 )
 
-transform/pos = Vector2( 160, 272 )
+[node name="IcePlatform42" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform25" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 1088, 160 )
 
-transform/pos = Vector2( 256, 96 )
+[node name="IcePlatform43" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform26" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 912, 112 )
 
-transform/pos = Vector2( 368, 208 )
+[node name="IcePlatform44" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform28" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 752, 144 )
 
-transform/pos = Vector2( 544, 272 )
+[node name="IcePlatform45" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform29" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 608, 64 )
 
-transform/pos = Vector2( 640, 240 )
+[node name="IcePlatform47" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform30" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 432, 96 )
 
-transform/pos = Vector2( 768, 288 )
+[node name="IcePlatform46" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform31" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 182.387, 144 )
 
-transform/pos = Vector2( 880, 224 )
+[node name="IcePlatform15" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform32" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 1120, 560 )
 
-transform/pos = Vector2( 768, 144 )
+[node name="IcePlatform16" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="IcePlatform33" parent="Platforms" instance=ExtResource( 2 )]
+transform/pos = Vector2( 800, 560 )
 
-transform/pos = Vector2( 656, 80 )
+[node name="IcePlatform39" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-[node name="Monsters" type="Node2D" parent="."]
+transform/pos = Vector2( 928, 560 )
 
-[node name="CliffTurningMonster" parent="Monsters" instance=ExtResource( 3 )]
+[node name="IcePlatform17" parent="Scaling/Platforms" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 240, 48 )
+transform/pos = Vector2( 736, 560 )
+
+[node name="IcePlatform18" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 608, 560 )
+
+[node name="IcePlatform19" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 544, 560 )
+
+[node name="IcePlatform20" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 480, 560 )
+
+[node name="IcePlatform21" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 416, 560 )
+
+[node name="IcePlatform22" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 352, 560 )
+
+[node name="IcePlatform23" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 288, 496 )
+
+[node name="IcePlatform24" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 160, 448 )
+
+[node name="IcePlatform25" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 256, 272 )
+
+[node name="IcePlatform26" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 432, 336 )
+
+[node name="IcePlatform29" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 608, 352 )
+
+[node name="IcePlatform32" parent="Scaling/Platforms" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 768, 320 )
+
+[node name="Monsters" type="Node2D" parent="Scaling"]
+
+editor/display_folded = true
+
+[node name="CliffTurningMonster" parent="Scaling/Monsters" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 240, 224 )
 weight = 200
 maxSpeed = 800
 canMoveThroughWalls = false
 
-[node name="Ladders" type="Node2D" parent="."]
+[node name="Ladders" type="Node2D" parent="Scaling"]
 
 transform/pos = Vector2( 15, 0 )
 
-[node name="LongLadder" parent="Ladders" instance=ExtResource( 4 )]
+[node name="LongLadder" parent="Scaling/Ladders" instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 865, 416 )
+transform/pos = Vector2( 1057, 592 )
 
-[node name="Ladder" parent="Ladders" instance=ExtResource( 5 )]
+[node name="Ladder" parent="Scaling/Ladders" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 193, 112 )
+transform/pos = Vector2( 193, 288 )
 
-[node name="Ladder1" parent="Ladders" instance=ExtResource( 5 )]
+[node name="Ladder1" parent="Scaling/Ladders" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 193, 144 )
+transform/pos = Vector2( 193, 320 )
 
-[node name="Gaps" type="Node2D" parent="."]
+[node name="Gaps" type="Node2D" parent="Scaling"]
 
-[node name="Target" parent="." instance=ExtResource( 6 )]
+[node name="Target" parent="Scaling" instance=ExtResource( 7 )]
 
-transform/pos = Vector2( 512, 32 )
+transform/pos = Vector2( 32, 32 )
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
+[node name="Player" parent="Scaling" instance=ExtResource( 8 )]
 
-transform/pos = Vector2( 880, 176 )
-
-[node name="Walls" parent="." instance=ExtResource( 8 )]
+transform/pos = Vector2( 51.2044, 649.164 )
 
 

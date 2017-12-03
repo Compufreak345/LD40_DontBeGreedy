@@ -51,6 +51,7 @@ canAutoJump = true
 canAutoClimb = true
 canTurnAroundAtCliffs = false
 movingDirection = 1
+fireSpitterLastSpit = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

@@ -12,7 +12,8 @@ var levelMenu
 var levelRunning = false
 var healthLabel
 var game
-var gameOverScreen
+var losingScreen
+var winningScreen
 export var autoStart = false
 
 func _ready():
@@ -21,7 +22,8 @@ func _ready():
 	hud = get_node("HUD")
 	healthLabel = hud.get_node("HealthLabel")
 	levelMenu = get_node("LevelMenu")
-	var gameOverScreen = get_node("GameOverScreen")
+	losingScreen = get_node("LosingScreen")
+	winningScreen = get_node("WinningScreen")
 	game = get_node("/root/GameData")
 	pause()
 	set_process_input(true)
@@ -53,6 +55,8 @@ func unpause():
 		mainMenu.hide()
 		levelMenu.hide()
 		hud.show()
+		losingScreen.hide()
+		winningScreen.hide()
 		get_tree().set_pause(false)
 		paused = false
 
@@ -67,11 +71,12 @@ func initLevel(scene):
 	loadedLevel = node
 	loadedLevel.hide()
 	add_child(node)
+	losingScreen.hide()
+	winningScreen.hide()
 	mainMenu.hide()
 	levelMenu.show()
 func _on_Start_Level_1_pressed():
-	var scene = preload("res://Scenes/Level1.tscn")
-	initLevel(scene)
+	initLevel(preload("res://Scenes/Level1.tscn"))
 
 
 
@@ -100,5 +105,8 @@ func game_over():
 	
 
 func _on_Start_Level_2_pressed():
-	var scene = preload("res://Scenes/Level2.tscn")
-	initLevel(scene)
+	initLevel(preload("res://Scenes/Level2.tscn"))
+
+
+func _on_Start_Level_3_pressed():
+	initLevel(preload("res://Scenes/Level3.tscn"))

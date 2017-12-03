@@ -20,7 +20,6 @@ transform/pos = Vector2( 11, 0 )
 
 [node name="Projectile" parent="ProjectilePosition" instance=ExtResource( 3 )]
 
-damage = 1
-timeBetweenHits = 10
+speed = 500
 
 

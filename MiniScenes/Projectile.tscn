@@ -18,6 +18,7 @@ script/script = ExtResource( 1 )
 target = "Monster"
 damage = 1
 timeBetweenHits = 10
+speed = 500
 
 [node name="Sprite" type="Sprite" parent="."]
 

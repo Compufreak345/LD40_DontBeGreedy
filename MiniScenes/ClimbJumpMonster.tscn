@@ -8,6 +8,7 @@
 transform/scale = Vector2( 0.5, 1 )
 weight = 300
 jumpSpeedBoost = 200
+fireSpitterLastSpit = -1
 
 [node name="Sprite" type="Sprite" parent="."]
 

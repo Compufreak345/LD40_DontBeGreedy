@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Hammer.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/MediKit.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/HappyPlayer.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Target.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/SadPlayer.png" type="Texture" id=6]
 
 [node name="Game" type="Node2D"]
 
@@ -12,6 +15,7 @@ autoStart = false
 [node name="MainMenu" type="Node2D" parent="."]
 
 process/pause_mode = 2
+z/z = 3
 
 [node name="Welcome" type="Label" parent="MainMenu"]
 
@@ -63,6 +67,23 @@ shortcut = null
 text = "Start Level 2"
 flat = false
 
+[node name="Start Level 3" type="Button" parent="MainMenu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 384.0
+margin/top = 96.0
+margin/right = 475.0
+margin/bottom = 116.0
+toggle_mode = false
+click_on_press = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Start Level 3"
+flat = false
+
 [node name="Resume" type="Button" parent="MainMenu"]
 
 visibility/visible = false
@@ -84,6 +105,7 @@ flat = false
 
 process/pause_mode = 2
 visibility/visible = false
+z/z = 3
 __meta__ = {
 "_edit_lock_": true
 }
@@ -252,6 +274,8 @@ max_lines_visible = -1
 
 [node name="HUD" type="Node2D" parent="."]
 
+z/z = 3
+
 [node name="HealthLabel" type="Label" parent="HUD"]
 
 focus/ignore_mouse = true
@@ -266,9 +290,105 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="WinningScreen" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="Label" type="Label" parent="WinningScreen"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 368.0
+margin/top = 152.0
+margin/right = 475.0
+margin/bottom = 166.0
+custom_colors/font_color = Color( 0.0674438, 0.863281, 0.0798788, 1 )
+text = "Congratulations !"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label1" type="Label" parent="WinningScreen"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 304.0
+margin/top = 176.0
+margin/right = 588.0
+margin/bottom = 190.0
+custom_colors/font_color = Color( 0.0674438, 0.863281, 0.0798788, 1 )
+text = "You just finished a level. We are so happy!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HappyPlayer" type="Sprite" parent="WinningScreen"]
+
+transform/pos = Vector2( 112, 264 )
+transform/scale = Vector2( 8, 8 )
+z/z = 1
+texture = ExtResource( 4 )
+offset = Vector2( 50, 0 )
+
+[node name="Sprite" type="Sprite" parent="WinningScreen"]
+
+transform/pos = Vector2( 136, 264 )
+transform/scale = Vector2( 6, 6 )
+texture = ExtResource( 5 )
+offset = Vector2( 50, 0 )
+
+[node name="LosingScreen" type="Node2D" parent="."]
+
+visibility/visible = false
+
+[node name="Label" type="Label" parent="LosingScreen"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 400.0
+margin/top = 168.0
+margin/right = 467.0
+margin/bottom = 182.0
+custom_colors/font_color = Color( 0.871094, 0.0986786, 0.0986786, 1 )
+text = "Oh noooo!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label1" type="Label" parent="LosingScreen"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 400.0
+margin/top = 200.0
+margin/right = 498.0
+margin/bottom = 214.0
+custom_colors/font_color = Color( 0.871094, 0.0986786, 0.0986786, 1 )
+text = "You just died :'("
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Sprite" type="Sprite" parent="LosingScreen"]
+
+transform/pos = Vector2( 144, 272 )
+transform/scale = Vector2( 6, 6 )
+texture = ExtResource( 6 )
+offset = Vector2( 50, 0 )
+
 [connection signal="pressed" from="MainMenu/Start Level 1" to="." method="_on_Start_Level_1_pressed"]
 
 [connection signal="pressed" from="MainMenu/Start Level 2" to="." method="_on_Start_Level_2_pressed"]
+
+[connection signal="pressed" from="MainMenu/Start Level 3" to="." method="_on_Start_Level_3_pressed"]
 
 [connection signal="pressed" from="MainMenu/Resume" to="." method="_on_Resume_pressed"]
 

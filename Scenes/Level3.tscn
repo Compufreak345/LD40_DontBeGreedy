@@ -1,0 +1,368 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://Scripts/World.gd" type="Script" id=1]
+[ext_resource path="res://MiniScenes/FirePlatform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MiniScenes/Fire.tscn" type="PackedScene" id=3]
+[ext_resource path="res://MiniScenes/FireSpitter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MiniScenes/CliffTurningMonster.tscn" type="PackedScene" id=5]
+[ext_resource path="res://MiniScenes/Ladder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://MiniScenes/Target.tscn" type="PackedScene" id=7]
+[ext_resource path="res://MiniScenes/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://MiniScenes/Walls.tscn" type="PackedScene" id=9]
+[ext_resource path="res://MiniScenes/Gap.tscn" type="PackedScene" id=10]
+
+[node name="World" type="Node2D"]
+
+script/script = ExtResource( 1 )
+gravity = 3
+slippyness = 1
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="FirePlatform" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 32, 528 )
+
+[node name="FirePlatform1" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 96, 528 )
+
+[node name="FirePlatform2" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 160, 528 )
+
+[node name="FirePlatform3" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 224, 528 )
+
+[node name="FirePlatform4" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 288, 528 )
+
+[node name="FirePlatform5" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 352, 528 )
+
+[node name="FirePlatform6" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 416, 528 )
+
+[node name="FirePlatform7" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 480, 528 )
+
+[node name="FirePlatform8" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 544, 528 )
+
+[node name="FirePlatform9" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 608, 528 )
+
+[node name="FirePlatform10" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 672, 528 )
+
+[node name="FirePlatform11" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 736, 528 )
+
+[node name="FirePlatform12" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 800, 528 )
+
+[node name="FirePlatform13" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 864, 528 )
+
+[node name="FirePlatform14" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 928, 528 )
+
+[node name="FirePlatform15" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 496, 416 )
+
+[node name="FirePlatform16" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 432, 416 )
+
+[node name="FirePlatform17" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 368, 416 )
+
+[node name="FirePlatform20" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 288, 368 )
+
+[node name="FirePlatform42" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 224.508, 311.453 )
+
+[node name="FirePlatform48" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 364.371, 297.288 )
+
+[node name="FirePlatform18" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 560, 416 )
+
+[node name="FirePlatform19" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 720, 416 )
+
+[node name="FirePlatform21" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 640, 298.029 )
+
+[node name="FirePlatform25" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 640, 240 )
+
+[node name="FirePlatform30" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 688, 176 )
+
+[node name="FirePlatform41" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 592, 160 )
+
+[node name="FirePlatform31" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 496, 176 )
+
+[node name="FirePlatform32" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 368, 192 )
+
+[node name="FirePlatform33" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 272, 176 )
+
+[node name="FirePlatform34" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 160, 192 )
+
+[node name="FirePlatform35" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 80, 160 )
+
+[node name="FirePlatform36" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 160, 80 )
+
+[node name="FirePlatform53" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 48, 96 )
+
+[node name="FirePlatform38" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 272, 64 )
+
+[node name="FirePlatform39" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 384, 64 )
+
+[node name="FirePlatform43" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 480, 64 )
+
+[node name="FirePlatform45" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 544, 64 )
+
+[node name="FirePlatform44" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 656, 80 )
+
+[node name="FirePlatform40" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 768, 64 )
+
+[node name="FirePlatform46" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 832, 64 )
+
+[node name="FirePlatform52" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 848, 160 )
+
+[node name="FirePlatform26" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 704, 240 )
+
+[node name="FirePlatform27" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 768, 240 )
+
+[node name="FirePlatform28" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 832, 240 )
+
+[node name="FirePlatform29" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 896, 240 )
+
+[node name="FirePlatform22" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 576, 298.029 )
+
+[node name="FirePlatform23" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 512, 298.029 )
+
+[node name="FirePlatform24" parent="Platforms" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 448, 298.029 )
+
+[node name="Monsters" type="Node2D" parent="."]
+
+[node name="Fire" parent="Monsters" instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 176, 496 )
+
+[node name="FireSpitter" parent="Monsters" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 512, 496 )
+transform/scale = Vector2( 0.75, 0.75 )
+maxSpeed = 50
+canAutoJump = false
+canAutoClimb = false
+canTurnAroundAtCliffs = true
+movingDirection = -1
+
+[node name="FireSpitter1" parent="Monsters" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 480, 268.02 )
+transform/scale = Vector2( 0.75, 0.75 )
+maxSpeed = 50
+canAutoJump = false
+canAutoClimb = false
+canTurnAroundAtCliffs = true
+movingDirection = -1
+
+[node name="FireSpitter6" parent="Monsters" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 544, 256 )
+transform/scale = Vector2( 0.75, 0.75 )
+maxSpeed = 50
+canAutoJump = false
+canAutoClimb = false
+canTurnAroundAtCliffs = true
+
+[node name="FireSpitter2" parent="Monsters" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 384, 368 )
+transform/scale = Vector2( 0.5, 0.5 )
+maxSpeed = 50
+canMoveThroughWalls = false
+canAutoJump = false
+canAutoClimb = false
+canTurnAroundAtCliffs = true
+
+[node name="FireSpitter3" parent="Monsters" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 720, 384 )
+maxSpeed = 0
+canMoveThroughWalls = false
+canAutoJump = false
+canAutoClimb = false
+canTurnAroundAtCliffs = true
+movingDirection = -1
+
+[node name="FireSpitter4" parent="Monsters" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 784, 32 )
+maxSpeed = 0
+canMoveThroughWalls = false
+movingDirection = -1
+fireSpitterLastSpit = 2
+
+[node name="FireSpitter7" parent="Monsters" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 784, 32 )
+maxSpeed = 0
+canMoveThroughWalls = false
+movingDirection = -1
+fireSpitterLastSpit = 0
+
+[node name="FireSpitter5" parent="Monsters" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 848, 128 )
+maxSpeed = 0
+canMoveThroughWalls = false
+movingDirection = -1
+
+[node name="CliffTurningMonster" parent="Monsters" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 848, 192 )
+transform/scale = Vector2( 0.5, 0.75 )
+maxSpeed = 500
+acceleration = 75
+
+[node name="Ladders" type="Node2D" parent="."]
+
+[node name="Ladder" parent="Ladders" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 608, 480 )
+
+[node name="Ladder1" parent="Ladders" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 608, 432 )
+
+[node name="Target" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 928, 32 )
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 48, 496 )
+jumpStrength = 90
+canMoveThroughWalls = false
+jumpSpeedBoost = 150
+
+[node name="Walls" parent="." instance=ExtResource( 9 )]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Gap" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 784, 160 )
+
+[node name="Gap1" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 912, 160 )
+
+[node name="Gap2" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 944, 240 )
+
+[node name="Gap3" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 592, 240 )
+
+[node name="Gap4" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 688, 288 )
+
+[node name="Gap9" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 400, 288 )
+
+[node name="Gap5" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 784, 416 )
+
+[node name="Gap6" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 656, 416 )
+
+[node name="Gap7" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 608, 416 )
+
+[node name="Gap8" parent="Node2D" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 320, 416 )
+
+

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://MiniScenes/BaseMonster.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Firespitter.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/FireSpitter.gd" type="Script" id=3]
+
+[node name="FireSpitter" instance=ExtResource( 1 )]
+
+maxSpeed = 200
+fireSpitterLastSpit = -1
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+flip_h = true
+
+[node name="FireSpitterEnhancements" type="Node2D" parent="."]
+
+script/script = ExtResource( 3 )
+fireballSpeed = 80
+
+[node name="FireballPosition" type="Position2D" parent="FireSpitterEnhancements"]
+
+transform/pos = Vector2( 18, -1 )
+
+

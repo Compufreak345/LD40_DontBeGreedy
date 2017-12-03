@@ -37,6 +37,7 @@ export var damage = 1.0
 export var timeBetweenHits = 0.5
 var damageLabel
 var sounds
+var _dead = false
 
 # class member variables go here, for example:
 # var a = 2
@@ -55,6 +56,11 @@ func _ready():
 	set_fixed_process(true)
 	
 func _fixed_process(delta):
+	if _dead:
+		set_fixed_process(false)
+		var parent = get_parent()
+		if parent != null:
+			parent.remove_child(self)
 	_moveCharacter(delta)
 	_autoAttack(delta)
 	
@@ -103,9 +109,9 @@ func _moveCharacter(delta):
 	var motion = velocity * delta
 	if stoppedJumping:
 		if velocity.x > 0 :
-			velocity.x = velocity.x - jumpSpeedBoost
+			velocity.x = max (0,min( velocity.x - jumpSpeedBoost, _calcRightMaxSpeed(maxSpeed)))
 		elif velocity.x < 0 :
-			velocity.x = velocity.x + jumpSpeedBoost
+			velocity.x = min(0,max(velocity.x + jumpSpeedBoost, _calcLeftMaxSpeed(maxSpeed)))
 		stoppedJumping = false
 	
 	if _climbing && canClimb:
@@ -172,7 +178,7 @@ func die(attacker):
 		sounds.play("Monster_Died")
 	elif is_in_group("Player"):
 		sounds.play("Player_Died")
-	set_scale(Vector2(0,0))
+	_dead = true
 	
 
 func enter_ladder(ladder):
@@ -199,8 +205,11 @@ func _moveLeft(maxSpeed, acceleration):
 			acc = float(acceleration)/(slippyness * 5)
 		else:
 			acc = float(acceleration)/(slippyness)
-	var newX = max(velocity.x - acc, (-1 * float(maxSpeed) / weight) * 100)
+	var newX = max(velocity.x - acc, _calcLeftMaxSpeed(maxSpeed))
 	velocity.x = newX
+
+func _calcLeftMaxSpeed(maxSpeed):
+	return (-1 * float(maxSpeed) / weight) * 100
 	
 func _moveRight(maxSpeed, acceleration):
 	if isJumping:
@@ -212,9 +221,11 @@ func _moveRight(maxSpeed, acceleration):
 		acc = float(acceleration)/(slippyness * 5)
 	else:
 		acc = float(acceleration)/(slippyness)
-	var newX = min(velocity.x + acc, (float(maxSpeed)  / weight) * 100)
+	var newX = min(velocity.x + acc, _calcRightMaxSpeed(maxSpeed))
 	velocity.x = newX
 
+func _calcRightMaxSpeed(maxSpeed):
+	return (float(maxSpeed)  / weight) * 100
 func _stop(stopSpeed, targetSpeed):
 	set_direction(0)
 	if velocity.x>0:

@@ -1,29 +1,29 @@
 [gd_scene load_steps=8 format=1]
 
-[ext_resource path="res://Sounds/Fireball.wav" type="Sample" id=1]
-[ext_resource path="res://Sounds/Shoot.wav" type="Sample" id=2]
-[ext_resource path="res://Sounds/Monster_Dead.wav" type="Sample" id=3]
+[ext_resource path="res://Sounds/Shoot.wav" type="Sample" id=1]
+[ext_resource path="res://Sounds/Monster_Dead.wav" type="Sample" id=2]
+[ext_resource path="res://Sounds/Fireball.wav" type="Sample" id=3]
 [ext_resource path="res://Sounds/Monster_Hit.wav" type="Sample" id=4]
 [ext_resource path="res://Sounds/Jump.wav" type="Sample" id=5]
 [ext_resource path="res://Sounds/Died.wav" type="Sample" id=6]
 
 [sub_resource type="SampleLibrary" id=1]
 
-samples/Fireball = {
+samples/Minigun_Shoot = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 1 )
 }
-samples/Minigun_Shoot = {
+samples/Monster_Died = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 2 )
 }
-samples/Monster_Died = {
-"db": 0.0,
-"pitch": 1.0,
+samples/Monster_Fire_Shoot = {
+"db": -12.4,
+"pitch": 1.5,
 "priority": 0,
 "sample": ExtResource( 3 )
 }
@@ -42,13 +42,13 @@ samples/Monster_Jump = {
 samples/Player_Died = {
 "db": -20.0,
 "pitch": 1.0,
-"priority": 0,
+"priority": 5,
 "sample": ExtResource( 6 )
 }
 samples/Player_Jump = {
 "db": 0.0,
 "pitch": 2.0,
-"priority": 0,
+"priority": 4,
 "sample": ExtResource( 5 )
 }
 
