@@ -34,6 +34,7 @@ export var attackTarget = "Player"
 var hittingElements = Dictionary()
 export var damage = 1
 export var timeBetweenHits = 0.5
+var damageLabel
 
 # class member variables go here, for example:
 # var a = 2
@@ -44,6 +45,7 @@ func _ready():
 	game = get_node("/root/GameData")
 	gravity = world.get("gravity")
 	sprite = get_node("Sprite")
+	damageLabel = get_node("DamageLabel")
 	scale = get_scale()
 	set_health(health)
 	set_fixed_process(true)
@@ -148,6 +150,7 @@ func get_health():
 	
 func hit(attacker):
 	set_health(get_health() - attacker.damage)
+	showDamage(attacker.damage)
 	if get_health() <= 0:
 		die(attacker)
 
@@ -210,6 +213,22 @@ func _autoAttack(delta):
 		if element.nextHitIn <= 0:
 			attack(element.body, element.attacker)
 			element.nextHitIn = element.attacker.timeBetweenHits
+
+func showDamage(amount):
+	if damageLabel != null:
+		damageLabel.set_text("-" + str(amount))
+		damageLabel.show()
+		var timer = Timer.new()
+		timer.set_wait_time(1)
+		timer.connect("timeout",self,"_on_showDamage_timeout") 
+		#timeout is what says in docs, in signals
+		#self is who respond to the callback
+		#_on_timer_timeout is the callback, can have any name
+		add_child(timer) #to process
+		timer.start() #to start
+
+func _on_showDamage_timeout():
+	damageLabel.hide()
 
 func attack(target, attacker):
 	do_damage(target, attacker)

@@ -5,7 +5,7 @@
 [node name="Game" type="Node2D"]
 
 script/script = ExtResource( 1 )
-autoStart = true
+autoStart = false
 
 [node name="MainMenu" type="Node2D" parent="."]
 
@@ -103,7 +103,7 @@ shortcut = null
 text = "Let's go!"
 flat = false
 
-[node name="VButtonArray" type="VButtonArray" parent="LevelMenu"]
+[node name="Items" type="VButtonArray" parent="LevelMenu"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -118,8 +118,9 @@ button/count = 0
 button/min_button_size = -1.0
 button/align = 1065353216
 
-[node name="Hammer" type="CheckBox" parent="LevelMenu/VButtonArray"]
+[node name="Hammer" type="CheckBox" parent="LevelMenu/Items"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -135,7 +136,7 @@ text = "Hammer (15)"
 flat = false
 align = 0
 
-[node name="Label" type="Label" parent="LevelMenu/VButtonArray/Hammer"]
+[node name="Label" type="Label" parent="LevelMenu/Items/Hammer"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -150,8 +151,9 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="MediPack" type="CheckBox" parent="LevelMenu/VButtonArray"]
+[node name="MediPack" type="CheckBox" parent="LevelMenu/Items"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -167,7 +169,7 @@ text = "MediPack (10)"
 flat = false
 align = 0
 
-[node name="Label" type="Label" parent="LevelMenu/VButtonArray/MediPack"]
+[node name="Label" type="Label" parent="LevelMenu/Items/MediPack"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -182,7 +184,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Minigun" type="CheckBox" parent="LevelMenu/VButtonArray"]
+[node name="Minigun" type="CheckBox" parent="LevelMenu/Items"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -199,7 +201,7 @@ text = "Minigun (100)"
 flat = false
 align = 0
 
-[node name="Label" type="Label" parent="LevelMenu/VButtonArray/Minigun"]
+[node name="Label" type="Label" parent="LevelMenu/Items/Minigun"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true

@@ -9,7 +9,8 @@ var maxRot = 0
 var rotDirection = -1
 var game
 var player
-export var damage = 5
+var weight = 15
+export var damage = 2
 export var timeBetweenHits = 0.1
 func _ready():
 	game = get_node("/root/GameData")

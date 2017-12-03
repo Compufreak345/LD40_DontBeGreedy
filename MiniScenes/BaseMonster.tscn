@@ -105,6 +105,21 @@ shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
+[node name="DamageLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -19.0
+margin/top = -54.0
+margin/right = 21.0
+margin/bottom = -40.0
+custom_colors/font_color = Color( 0.964844, 0.0339203, 0.0339203, 1 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [connection signal="area_enter" from="Hitbox" to="." method="_on_Hitbox_area_enter"]
 
 [connection signal="body_enter" from="Hitbox" to="." method="_on_Hitbox_body_enter"]

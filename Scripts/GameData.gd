@@ -6,7 +6,7 @@ extends Node2D
 var score = 0
 var rightEnd = 0
 var leftStart = 0
-var playerItems = Array()
+var playerItems = Dictionary()
 var player setget set_player, get_player
 func _ready():
 	rightEnd = Globals.get("display/width")
@@ -19,3 +19,15 @@ func set_player(value):
 	
 func get_player():
 	return player
+
+func add_item(name):
+	playerItems[name] = true
+	player.update_items(playerItems)
+
+func remove_item(name) :
+	playerItems.erase(name)
+	player.update_items(playerItems)
+	
+func clear_items():
+	playerItems.clear()
+	player.update_items(playerItems)

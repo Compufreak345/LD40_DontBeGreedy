@@ -11,7 +11,8 @@ var hud
 var levelMenu
 var levelRunning = false
 var healthLabel
-export var autoStart = true
+var game
+export var autoStart = false
 
 func _ready():
 	mainMenu = get_node("MainMenu")
@@ -19,6 +20,7 @@ func _ready():
 	hud = get_node("HUD")
 	healthLabel = hud.get_node("HealthLabel")
 	levelMenu = get_node("LevelMenu")
+	game = get_node("/root/GameData")
 	pause()
 	set_process_input(true)
 	if autoStart:
@@ -74,6 +76,14 @@ func _on_Resume_pressed():
 
 
 func _on_StartLevel_pressed():
+	fill_inventory()
 	loadedLevel.show()
 	levelRunning = true
 	unpause()
+
+func fill_inventory():
+	game.clear_items()
+	var items = levelMenu.get_node("Items")
+	for item in items.get_children():
+		if item.is_pressed:
+			game.add_item(item.get_name())

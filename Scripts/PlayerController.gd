@@ -1,5 +1,7 @@
 extends "res://Scripts/CharacterKinematicBody2D.gd"
 
+var itemWeight = 0
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -14,6 +16,11 @@ func set_health(value):
 	.set_health(value)
 	if game != null:
 		game.update_health(health)
+
+func _update_items(items):
+	weight -= itemWeight
+	itemWeight = 0
+	
 
 func _movePlayer(delta, gravity):
 	if Input.is_action_pressed("ui_left"):
